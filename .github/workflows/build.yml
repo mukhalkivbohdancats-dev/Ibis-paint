@@ -37,6 +37,12 @@ jobs:
           rm -rf temp_unzip
         fi
 
+    - name: Ensure environment template exists
+      run: |
+        if [ ! -f .env.example ]; then
+          echo "# Generated for CI build" > .env.example
+        fi
+
     - name: Setup Gradle 9.3.1 Wrapper
       run: |
         gradle wrapper --gradle-version 9.3.1 --distribution-type bin
